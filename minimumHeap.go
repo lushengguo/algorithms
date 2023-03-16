@@ -37,22 +37,6 @@ func (heap *MinimumHeap) insert(num int) {
 		index = pIndex
 		pIndex = heap.parentIndex(index)
 	}
-
-	i := 0
-	li := heap.leftChildIndex(i)
-	for li < len(slice) && slice[i] > slice[li] {
-		slice[i], slice[li] = slice[li], slice[i]
-		i = li
-		li = heap.leftChildIndex(i)
-	}
-
-	i = 0
-	ri := heap.rightChildIndex(i)
-	for ri < len(slice) && slice[i] > slice[ri] {
-		slice[i], slice[ri] = slice[ri], slice[i]
-		i = ri
-		ri = heap.rightChildIndex(i)
-	}
 }
 
 // 主要思想：把最后一个元素跟头部互换，然后跟左右哪个小换哪个
