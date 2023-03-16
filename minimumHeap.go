@@ -109,7 +109,7 @@ func Construct(arr []int) *MinimumHeap {
 	return heap
 }
 
-func main() {
+func test_MinimumHeap() {
 	heap := Construct([]int{3, 12, 3, 213, 21, 4, 2, 1, 43, 21, 3, 21, 321})
 	for num := heap.pop(); num != -1; num = heap.pop() {
 		fmt.Println(num)
