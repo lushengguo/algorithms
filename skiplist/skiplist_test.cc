@@ -2,6 +2,8 @@
 #include <algorithm>
 #include <gtest/gtest.h>
 #include <iostream>
+#include <spdlog/spdlog.h>
+
 template <typename A, typename B>
 void printVector(const std::vector<std::pair<A, B>> &v)
 {
@@ -42,6 +44,8 @@ bool isAscending(const std::vector<std::pair<int, int>> &v)
 
 TEST(skiplist, find)
 {
+    spdlog::set_level(spdlog::level::debug);
+
     SkipList<int, int> skiplist;
 
     auto node = skiplist.find(1);

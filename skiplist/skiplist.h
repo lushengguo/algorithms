@@ -3,8 +3,8 @@
 #include <assert.h>
 #include <cstdlib>
 #include <functional>
-#include <iostream>
 #include <memory>
+#include <spdlog/spdlog.h>
 #include <utility>
 #include <vector>
 
@@ -178,10 +178,9 @@ typename SkipList<Key, Value>::InsertType SkipList<Key, Value>::insert(
     if (node)
     {
         node->value_ = std::move(value);
-        std::cout << "insert key=" << key << ", value=" << value
-                  << ", height=" << node->height() << ", type \""
-                  << magic_enum::enum_name(InsertType::Insert) << "\""
-                  << std::endl;
+        spdlog::debug("insert key={}, value={}, height={}, type=\"{}\"", key,
+                      value, node->height(),
+                      magic_enum::enum_name(InsertType::Update));
         return InsertType::Update;
     }
 
@@ -214,9 +213,9 @@ typename SkipList<Key, Value>::InsertType SkipList<Key, Value>::insert(
         }
     } while (h > 0);
 
-    std::cout << "insert key=" << key << ", value=" << value
-              << ", height=" << node->height() << ", type \""
-              << magic_enum::enum_name(InsertType::Insert) << "\"" << std::endl;
+        spdlog::debug("insert key={}, value={}, height={}, type=\"{}\"", key,
+                      value, node->height(),
+                      magic_enum::enum_name(InsertType::Insert));
     return InsertType::Insert;
 }
 
